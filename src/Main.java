@@ -33,26 +33,11 @@ public class Main {
             }
             System.out.printf("%n+---+---+---+%n");
         }
-        /*
-        System.out.println();
-        System.out.println();
-        System.out.printf("+---+---+---+%n");
-        System.out.printf("| %s | %s | %s |%n","X","X","X");
-        System.out.printf("+---+---+---+%n");
-        System.out.printf("| %s | %s | %s |%n","X","X","X");
-        System.out.printf("+---+---+---+%n");
-        System.out.printf("| %s | %s | %s |%n","X","X","X");
-        System.out.printf("+---+---+---+");*/
     }
     public static void gameRound (Scanner input){
         System.out.printf("%sYour turn player %s%c%s%n", GREEN, YELLOW, currentPlayer, RESET);
         System.out.printf("Please input your desired square: ");
         int number = checkInput(input, 1, 9);
-    /*
-        for (int i = 0; i < BMIDATA[genderIndex][ageIndex].length; i++) {
-            bmiSet[i] = BMIDATA[genderIndex][ageIndex][i];
-        }*/
-
     }
     public static int checkInput(Scanner input, int min, int max) {
 
