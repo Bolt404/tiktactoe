@@ -2,33 +2,25 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    /**
-     *TODO Player tracker
-     *TODO Generate the map
-     *TODO Place O or X
-     *TODO Check who is wining
-     */
-    public static char[][] boarddefault = {
+    public static char[][] boardDefault = {
         {'1','2','3'},
         {'4','5','6'},
         {'7','8','9'}
     };
-    public static char[][] boardPlay = new char[boarddefault.length][];
+    public static char[][] boardPlay = new char[boardDefault.length][];
     public static char currentPlayer = 'X';
 
     public static void main(String[] args) {
         //Need to setup my play board with some values, might as well use the default.
-        for (int i = 0; i < boarddefault.length; i++) {
-            boardPlay[i] = Arrays.copyOf(boarddefault[i], boarddefault[i].length);
+        for (int i = 0; i < boardDefault.length; i++) {
+            boardPlay[i] = Arrays.copyOf(boardDefault[i], boardDefault[i].length);
         }
-
-        Scanner input = new Scanner(System.in);
         boolean winnerFound = false;
         System.out.println("WELCOME TO TIKTAKTOE");
         while(!winnerFound){
             switchPlayer();
             makeBoard();
-            gameRound(input);
+            gameRound();
             winnerFound = checkIfWinner();
         }
     }
@@ -92,17 +84,17 @@ public class Main {
 
             // Print elements from the second array (boarddefault) this is to reference what number belongs where.
             for (int j = 0; j < 3; j++) {
-                System.out.printf("%s%c%s%s", RED, boarddefault[i][j], RESET, " | ");
+                System.out.printf("%s%c%s%s", RED, boardDefault[i][j], RESET, " | ");
             }
             //Footer of my board.
             System.out.printf("%n+---+---+---+  +---+---+---+%n");
         }
 
     }
-    public static void gameRound (Scanner input){
+    public static void gameRound (){
         System.out.printf("%sYour turn player %s%c%s%n", GREEN, YELLOW, currentPlayer, RESET);
         System.out.print("Please input your desired square: ");
-        int number = checkInput(input, 1, 9);
+        int number = checkInput(1, 9);
 
         switch (number){
             case 1:
@@ -142,7 +134,8 @@ public class Main {
         }
 
     }
-    public static int checkInput(Scanner input, int min, int max) {
+    public static int checkInput(int min, int max) {
+        Scanner input = new Scanner(System.in);
         while (true) {
             if (input.hasNextInt()) {
                 int number = input.nextInt();
