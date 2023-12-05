@@ -26,14 +26,53 @@ public class Main {
         boolean winnerFound = false;
         System.out.println("WELCOME TO TIKTAKTOE");
         while(!winnerFound){
+            switchPlayer();
             makeBoard();
             gameRound(input);
-            switchPlayer();
-            //winnerFound = checkIfWinner();
+            winnerFound = checkIfWinner();
         }
     }
+
+    /**
+     * Winner Numbers from the Array:
+     * [0][0], [0][1], [0][2]
+     * [1][0], [1][1], [1][2]
+     * [2][0], [2][1], [2][2]
+     *
+     * [0][0], [1][0], [2][0]
+     * [0][1], [1][1], [2][1]
+     * [0][2], [1][2], [2][2]
+     *
+     * [0][0], [1][1], [2][2]
+     * [2][0], [1][1], [0][2]
+     * @return
+     */
     public static boolean checkIfWinner(){
-        return true;
+        for (int i = 0; i < 3; i++) {
+            if (boardPlay[i][0] == currentPlayer && boardPlay[i][1] == currentPlayer && boardPlay[i][2] == currentPlayer){
+                printWinner();
+                return true;
+            }
+            if (boardPlay[0][i] == currentPlayer && boardPlay[1][i] == currentPlayer && boardPlay[2][i] == currentPlayer){
+                printWinner();
+                return true;
+            }
+        }
+        if (boardPlay[0][0] == currentPlayer && boardPlay[1][1] == currentPlayer && boardPlay[2][2] == currentPlayer){
+            printWinner();
+            return true;
+        }
+        if (boardPlay[2][0] == currentPlayer && boardPlay[1][1] == currentPlayer && boardPlay[0][2] == currentPlayer){
+            printWinner();
+            return true;
+        }
+        return false;
+    }
+    public static void printWinner() {
+        makeBoard();
+        System.out.printf("%s%S%s", YELLOW, "WINNER WINNER CHICKEN DINNER", RESET);
+        System.out.printf("%s%n%S%s%s%s%n%n", YELLOW, "WINNER PLAYER: ", RED, currentPlayer, RESET);
+        System.out.printf("%s","Play again? %n0 = No, 1 = Yes:");
     }
     public static void makeBoard() {
         //Header of my board.
